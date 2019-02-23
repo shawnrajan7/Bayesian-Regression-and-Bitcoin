@@ -55,7 +55,6 @@ def computeDelta(wt, X, Xi):
     float
         The output of equation 6, a prediction of the average price change.
     """
-    # YOUR CODE GOES HERE
     nr_sum = 0
     dr_sum = 0
     for i in range(0,len(Xi.index)):
@@ -96,7 +95,6 @@ trainData = pd.DataFrame(d)
 # Feed the data: [deltaP, deltaP90, deltaP180, deltaP360] to train the linear model. 
 # Use the statsmodels ols function.
 # Use the variable name model for your fitted model
-# YOUR CODE HERE
 model = smf.ols(formula = 'deltaP ~ deltaP90 + deltaP180 + deltaP360',data = trainData).fit()
 
 # Print the weights from the model
@@ -105,7 +103,6 @@ print(model.params)
 
 # Perform the Bayesian Regression to predict the average price change for each dataset of test using train1 as input.
 # This should be similar to above where it was computed for train2.
-# YOUR CODE HERE
 testDeltaP90 = np.empty(0)
 testDeltaP180 = np.empty(0)
 testDeltaP360 = np.empty(0)
@@ -118,7 +115,6 @@ for i in range(0,len(train1_360.index)) :
 
 
 # Actual deltaP values for test data.
-# YOUR CODE HERE (use the right variable names so the below code works)
 testDeltaP = np.asarray(test_360[['Yi']])
 testDeltaP = np.reshape(testDeltaP, -1)
 
@@ -139,8 +135,6 @@ compareDF = pd.DataFrame(compare)
 
 
 # Compute the MSE and print the result
-# HINT: consider using the sm.mean_squared_error function
 MSE = 0.0
-# YOUR CODE HERE
 MSE = sm.mean_squared_error(y_true=testDeltaP,y_pred=result)
 print("The MSE is %f" % (MSE))
